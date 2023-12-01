@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sistem Perhitungan Basket</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+
+<body class="bg-light">
+  <div>
+    <div class="row">
+      <div class="mx-auto col-10 col-md-8 col-lg-6">
+        <h1>Sistem Perhitungan Basket</h1>
+        <h3>Connection: <span id="status">Offline</span></h3>
+        <div class="row bg-secondary rounded p-2 my-4" style="--bs-bg-opacity: .5;">
+          <h3>Timer <span id="timeText">10:00</span></h3>
+          <!-- <div class="col">
+            <input type="text" class="form-control" placeholder="Set Timer" aria-label="First name">
+          </div> -->
+          <div class="col btn-group">
+            <button class="btn btn-primary btn-customized" onclick="startTimer()">
+              Start
+            </button>
+            <button class="btn btn-danger btn-customized" onclick="stopTimer()">
+              Stop
+            </button>
+            <button class="btn btn-warning btn-customized" onclick="stopTimer(); setTimer(600); stopTimer();">
+              Reset
+            </button>
+            <button class="btn btn-success btn-customized" onclick="setTimer(timer+60);">
+              +1Min
+            </button>
+            <button class="btn btn-danger btn-customized" onclick="setTimer(timer-60);">
+              -1Min
+            </button>
+          </div>
+        </div>
+        <div class="row bg-secondary rounded p-2" style="--bs-bg-opacity: .5;">
+          <div class="row">
+            <h3>Tim 1</h3>
+            <div class="col my-2">
+              <input value="<%=timA%>" id="tima" type="text" class="form-control" placeholder="Nama Tim">
+            </div>
+            <div class="col">
+              <button class="btn btn-primary btn-customized"
+                onclick="updateEmit('tima', document.getElementById('tima').value)">
+                Update
+              </button>
+            </div>
+          </div>
+          <div class="row my-2">
+            <h5>Score</h5>
+            <div class="col">
+              <input value="<%= scorea%>" id="scorea" type="text" class="form-control" placeholder="Score">
+            </div>
+            <div class="col btn-group">
+              <button class="btn btn-primary btn-customized"
+                onclick="updateEmit('scorea', document.getElementById('scorea').value); scorea=(+document.getElementById('scorea').value)">
+                Update
+              </button>
+              <button class="btn btn-success btn-customized" onclick="updatePoint('scorea', scorea+=1)">
+                +1
+              </button>
+              <button class="btn btn-success btn-customized" onclick="updatePoint('scorea', scorea+=2)">
+                +2
+              </button>
+              <button class="btn btn-success btn-customized" onclick="updatePoint('scorea', scorea+=3)">
+                +3
+              </button>
+            </div>
+          </div>
+          <div class="row my-2">
+            <h5>Fall</h5>
+            <div class="col">
+              <input value="<%= falla%>" id="falla" type="text" class="form-control" placeholder="Score"
+                aria-label="First name">
+            </div>
+            <div class="col btn-group">
+              <button class="btn btn-primary btn-customized"
+                onclick="updateEmit('falla', document.getElementById('falla').value); falla=(+document.getElementById('falla').value)">
+                Update
+              </button>
+              <button class="btn btn-success btn-customized" onclick="updatePoint('falla', falla+=1)">
+                +1
+              </button>
+              <button class="btn btn-success btn-customized" onclick="updatePoint('falla', falla+=2)">
+                +2
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="row bg-secondary rounded p-2 my-2" style="--bs-bg-opacity: .5;">
+          <div class="row">
+            <h3>Tim 2</h3>
+            <div class="col my-2">
+              <input value="<%=timB%>" id="timb" type="text" class="form-control" placeholder="Nama Tim"
+                aria-label="First name">
+            </div>
+            <div class="col">
+              <button class="btn btn-primary btn-customized"
+                onclick="updateEmit('timb', document.getElementById('timb').value)">
+                Update
+              </button>
+            </div>
+          </div>
+          <div class="row my-2">
+            <h5>Score</h5>
+            <div class="col">
+              <input value="<%= scoreb%>" id="scoreb" type="text" class="form-control" placeholder="Score"
+                aria-label="First name">
+            </div>
+            <div class="col btn-group">
+              <button class="btn btn-primary btn-customized"
+                onclick="updateEmit('scoreb', document.getElementById('scoreb').value); scoreb=(+document.getElementById('scoreb').value)">
+                Update
+              </button>
+              <button class="btn btn-success btn-customized" onclick="updatePoint('scoreb', scoreb+=1)">
+                +1
+              </button>
+              <button class="btn btn-success btn-customized" onclick="updatePoint('scoreb', scoreb+=2)">
+                +2
+              </button>
+              <button class="btn btn-success btn-customized" onclick="updatePoint('scoreb', scoreb+=3)">
+                +3
+              </button>
+            </div>
+          </div>
+          <div class="row my-2">
+            <h5>Fall</h5>
+            <div class="col">
+              <input value="<%= fallb%>" id="fallb" type="text" class="form-control" placeholder="Score">
+            </div>
+            <div class="col btn-group">
+              <button class="btn btn-primary btn-customized"
+                onclick="updateEmit('fallb', document.getElementById('fallb').value); fallb=(+document.getElementById('fallb').value)">
+                Update
+              </button>
+              <button class="btn btn-success btn-customized" onclick="updatePoint('fallb', fallb+=1)">
+                +1
+              </button>
+              <button class="btn btn-success btn-customized" onclick="updatePoint('fallb', fallb+=2)">
+                +2
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const socket = io();
+    let timer = parseInt("<%= timer %>");
+    let scorea = parseInt("<%= scorea %>");
+    let scoreb = parseInt("<%= scoreb %>");
+    let falla = parseInt("<%= falla %>");
+    let fallb = parseInt("<%= fallb %>");
+    let isStart = "<%=isStart%>" == "true";
+    socket.on("connect", (reason) => {
+      document.getElementById("status").innerText = "Online"
+    });
+    socket.on("reconnect", (reason) => {
+      document.getElementById("status").innerText = "Reconnecting"
+    });
+    socket.on("disconnect", (reason) => {
+      alert("Disconnected from server, please wait status to online!")
+      document.getElementById("status").innerText = "Offline"
+    });
+    // setInterval(() => {
+    //   if (isStart) {
+    //     timer--;
+    //   }
+    //   timeText.innerText = secondToMinute(timer);
+    // }, 1000);
+    socket.on("countdown", (second) => {
+      timer = second;
+      timeText.innerText = secondToMinute(second);
+    });
+    socket.on("timer", (second) => {
+      timer = second;
+      timeText.innerText = secondToMinute(second);
+    })
+    socket.on("scorea", (score) => {
+      scorea = parseInt(score);
+      document.getElementById("scorea").value = score;
+    })
+    socket.on("scoreb", (score) => {
+      scoreb = parseInt(score);
+      document.getElementById("scoreb").value = score;
+    })
+    socket.on("fallb", (score) => {
+      fallb = parseInt(score);
+      document.getElementById("fallb").value = score;
+    })
+    socket.on("falla", (score) => {
+      falla = parseInt(score);
+      document.getElementById("falla").value = score;
+    })
+    socket.on("tima", (score) => {
+      document.getElementById("tima").value = score;
+    })
+    socket.on("timb", (score) => {
+      document.getElementById("timb").value = score;
+    })
+
+
+    function updatePoint(name, num) {
+      // document.getElementById(name).value = num;
+      socket.emit(name, String(num));
+    }
+
+    function setTimer(sec) {
+      timer = sec;
+      socket.emit("timer", sec);
+    }
+
+    function startTimer() {
+      isStart = true;
+      socket.emit("timerStart");
+    }
+    function stopTimer() {
+      isStart = false;
+      socket.emit("timerStop");
+    }
+
+    function updateEmit(event, data) {
+      socket.emit(event, data);
+    }
+
+    function secondToMinute(second) {
+      return zeroPad(Math.floor(second / 60)) + ":" + zeroPad(Math.floor(second % 60))
+    }
+
+    function zeroPad(num) {
+      return num.toString().padStart(2, "0");
+    }
+  </script>
+</body>
+
+</html>
